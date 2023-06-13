@@ -1,0 +1,30 @@
+<h1><u>Career Finder Application</u></h1>
+<body>
+  <p><strong><label for="nameInput">Enter Your name:</label></strong></p>
+  <input type="text" id="nameInput" (ngModel)="name">
+  <!-- <p><strong><label for="ageInput">Age:</label></strong></p> -->
+  <!-- <input type="number" id="ageInput" [(ngModel)]="age"> -->
+
+  <!-- <div *ngIf="age >= 18"> -->
+    <div>
+    <p><strong>Pick interest(s) from the list:</strong></p>
+    <select multiple>
+      <option *ngFor="let interest of availableInterests" [value]="interest"
+        [class.selected]="isSelected(interest)"
+        (dblclick)="toggleSelection(interest)">
+        {{ interest }}
+      </option>
+    </select>
+  </div>
+  <p *ngIf="interests.length > 0">
+    <strong>Selected Interest(s):</strong>
+    <span *ngFor="let selectedInterest of interests">{{ selectedInterest }} </span>
+  </p>
+  <p *ngIf="selectedCareers.length > 0">
+    <strong>Suggested Career(s):</strong>
+    <span *ngFor="let career of selectedCareers">{{ career }}</span>
+  </p>
+
+  <button (click)="confirmSelection()" *ngIf="interests.length > 0 ">Confirm Selection</button>
+  <p *ngIf="showCareer"><strong>Your Most Likely Career:</strong> {{ suggestedCareer }}</p>
+</body>
